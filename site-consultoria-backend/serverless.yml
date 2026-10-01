@@ -1,0 +1,42 @@
+service: site-consultoria-api
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: us-east-1
+  stage: ${opt:stage, 'dev'}
+  environment:
+    NODE_ENV: production
+    DATABASE_URL: ${env:DATABASE_URL}
+    JWT_SECRET: ${env:JWT_SECRET}
+    JWT_EXPIRES_IN: ${env:JWT_EXPIRES_IN, '7d'}
+    CORS_ORIGIN: ${env:CORS_ORIGIN, '*'}
+    SMTP_HOST: ${env:SMTP_HOST, ''}
+    SMTP_PORT: ${env:SMTP_PORT, ''}
+    SMTP_SECURE: ${env:SMTP_SECURE, 'false'}
+    SMTP_USER: ${env:SMTP_USER, ''}
+    SMTP_PASS: ${env:SMTP_PASS, ''}
+
+functions:
+  api:
+    handler: dist/lambda.handler
+    memorySize: 512
+    timeout: 15
+    events:
+      - httpApi:
+          path: /{proxy+}
+          method: ANY
+
+package:
+  patterns:
+    - '!**'
+    - dist/**
+    - node_modules/**
+    - prisma/schema.prisma
+    - '!node_modules/.prisma/client/libquery_engine-*'
+    - 'node_modules/.prisma/client/libquery_engine-rhel-*'
+    - '!node_modules/typescript/**'
+    - '!node_modules/prisma/**'
+    - '!node_modules/tsx/**'
+    - '!node_modules/tsc-alias/**'
+    - '!node_modules/@types/**'

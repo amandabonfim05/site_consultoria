@@ -1,0 +1,116 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  background-color: var(--bg-page);
+}
+
+.sidebar {
+  flex: 0 0 232px;
+  background: linear-gradient(180deg, var(--navy-800) 0%, var(--navy-900) 100%);
+  color: var(--texto-b);
+  display: flex;
+  flex-direction: column;
+  padding: 40px 0 28px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  transition: margin-left 0.25s ease, opacity 0.2s ease;
+}
+
+.sidebarClosed {
+  margin-left: -232px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hamburgerButton {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 20;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  background-color: var(--navy-800);
+  color: #ffffff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-card);
+  transition: background-color 0.15s ease;
+}
+
+.hamburgerButton:hover {
+  background-color: var(--navy-700);
+}
+
+.logo {
+  width: 160px;
+  height: auto;
+  margin: 0 auto 48px;
+  display: block;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 16px;
+}
+
+.navLink {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--texto-b);
+  opacity: 0.62;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 11px 16px;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: opacity 0.15s ease, background-color 0.15s ease;
+}
+
+.navLink:hover {
+  opacity: 0.9;
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.navLinkActive {
+  opacity: 1;
+  background-color: rgba(244, 185, 66, 0.14);
+  color: var(--gold-500);
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  margin: 28px 20px;
+}
+
+.navFooter {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 16px;
+  margin-top: auto;
+}
+
+.content {
+  flex: 1;
+  padding: 44px 52px;
+  min-width: 0;
+}
+
+.pageTitle {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 28px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin: 0 0 32px;
+}

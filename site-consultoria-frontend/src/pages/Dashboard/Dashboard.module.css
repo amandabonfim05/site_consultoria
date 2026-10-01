@@ -1,0 +1,263 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 1240px;
+}
+
+.card {
+  background-color: var(--bg-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-1px);
+}
+
+.metricCard {
+  composes: card;
+  grid-column: span 1;
+  padding: 18px 20px;
+  min-height: 108px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.metricLabel {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--slate-500);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+.metricValue {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 32px;
+  color: var(--ink);
+  margin: 6px 0 0;
+  letter-spacing: -0.01em;
+}
+
+.metricHint {
+  font-size: 11px;
+  color: var(--slate-300);
+  margin: 4px 0 0;
+}
+
+.wideCard {
+  composes: card;
+  grid-column: span 2;
+  padding: 22px 24px;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+}
+
+.tallCard {
+  composes: card;
+  grid-column: span 2;
+  grid-row: span 2;
+  padding: 22px 24px;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardTitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--ink);
+  margin: 0 0 4px;
+}
+
+.cardHint {
+  font-size: 11px;
+  color: var(--slate-500);
+  margin: 0 0 12px;
+}
+
+.goalCard {
+  composes: card;
+  grid-column: span 2;
+  grid-row: span 2;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 30% 20%, var(--navy-700) 0%, var(--navy-900) 75%);
+  color: var(--texto-b);
+  position: relative;
+  overflow: hidden;
+}
+
+.goalLabel {
+  align-self: flex-start;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  margin: 0 0 8px;
+  z-index: 1;
+}
+
+.goalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 8px;
+  z-index: 1;
+}
+
+.goalEditButton {
+  background: rgba(255, 255, 255, 0.12);
+  border: none;
+  border-radius: var(--radius-sm);
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.goalEditButton:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.goalEditForm {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  height: 160px;
+  z-index: 1;
+}
+
+.goalEditInput {
+  flex: 1;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-sm);
+  padding: 9px 12px;
+  color: #ffffff;
+  font-size: 13px;
+  outline: none;
+}
+
+.goalEditInput::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.goalEditInput:focus {
+  border-color: var(--gold-500);
+}
+
+.goalEditConfirm,
+.goalEditCancel {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.goalEditConfirm {
+  background-color: var(--gold-500);
+  color: var(--navy-900);
+}
+
+.goalEditConfirm:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.goalEditCancel {
+  background-color: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.goalPercent {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 15px;
+  fill: #ffffff;
+}
+
+.goalFooter {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 4px;
+  z-index: 1;
+}
+
+.goalFooter div {
+  text-align: center;
+}
+
+.goalFooterLabel {
+  font-size: 10px;
+  opacity: 0.65;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.goalFooterValue {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.contactsList {
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.contactRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12.5px;
+  color: var(--ink);
+  padding: 9px 4px;
+  border-bottom: 1px solid var(--slate-100);
+}
+
+.contactRow span:last-child {
+  color: var(--slate-500);
+  font-size: 11.5px;
+}
+
+.emptyHint {
+  font-size: 12px;
+  color: var(--slate-300);
+}
+
+@media (max-width: 1050px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .tallCard,
+  .wideCard,
+  .goalCard {
+    grid-column: span 2;
+  }
+}

@@ -1,0 +1,97 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum StatusAnalise {
+  EM_ANDAMENTO
+  APROVADA
+  REPROVADA
+}
+
+model Consultor {
+  id         String   @id @default(uuid())
+  nome       String
+  email      String   @unique
+  senhaHash  String
+  telefone   String?
+  dataNascimento DateTime?
+  metaMensal Decimal  @default(0) @db.Decimal(12, 2)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  contatos  Contato[]
+  contratos Contrato[]
+  analises  Analise[]
+  ligacoes  Ligacao[]
+
+  @@map("consultores")
+}
+
+model Contato {
+  id             String    @id @default(uuid())
+  nome           String
+  email          String
+  telefone       String
+  dataNascimento DateTime?
+  profissao      String?
+  indicadoPor    String?
+  detalhes       String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  consultorId String
+  consultor   Consultor  @relation(fields: [consultorId], references: [id], onDelete: Cascade)
+  contratos   Contrato[]
+  analises    Analise[]
+
+  @@index([consultorId])
+  @@map("contatos")
+}
+
+model Contrato {
+  id        String   @id @default(uuid())
+  valor     Decimal  @db.Decimal(12, 2)
+  fechadoEm DateTime @default(now())
+
+  consultorId String
+  consultor   Consultor @relation(fields: [consultorId], references: [id], onDelete: Cascade)
+
+  contatoId String
+  contato   Contato @relation(fields: [contatoId], references: [id], onDelete: Cascade)
+
+  @@index([consultorId, fechadoEm])
+  @@map("contratos")
+}
+
+model Analise {
+  id             String         @id @default(uuid())
+  status         StatusAnalise  @default(EM_ANDAMENTO)
+  valorEstimado  Decimal?       @db.Decimal(12, 2)
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  consultorId String
+  consultor   Consultor @relation(fields: [consultorId], references: [id], onDelete: Cascade)
+
+  contatoId String?
+  contato   Contato? @relation(fields: [contatoId], references: [id], onDelete: Cascade)
+
+  @@index([consultorId, createdAt])
+  @@map("analises")
+}
+
+model Ligacao {
+  id         String   @id @default(uuid())
+  realizadaEm DateTime @default(now())
+
+  consultorId String
+  consultor   Consultor @relation(fields: [consultorId], references: [id], onDelete: Cascade)
+
+  @@index([consultorId, realizadaEm])
+  @@map("ligacoes")
+}

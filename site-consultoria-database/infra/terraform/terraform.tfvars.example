@@ -1,0 +1,19 @@
+
+aws_region   = "us-east-1"
+project_name = "site-consultoria"
+environment  = "dev"
+
+vpc_id              = "vpc-xxxxxxxxxxxxxxxxx"
+private_subnet_ids  = ["subnet-aaaaaaaaaaaaaaaaa", "subnet-bbbbbbbbbbbbbbbbb"]
+
+# Mesmo Security Group referenciado no serverless.yml do backend
+# (LAMBDA_SECURITY_GROUP_ID)
+lambda_security_group_id = "sg-xxxxxxxxxxxxxxxxx"
+
+db_name     = "site_consultoria"
+db_username = "site_consultoria_admin"
+
+# Free tier: db.t4g.micro / db.t3.micro + 20GB + single-AZ
+db_instance_class    = "db.t4g.micro"
+db_allocated_storage = 20
+multi_az              = false

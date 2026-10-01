@@ -1,0 +1,52 @@
+{
+  "name": "site-consultoria-backend",
+  "version": "1.0.0",
+  "description": "API do Site Consultoria — Node + Express + TypeScript, empacotada para rodar em AWS Lambda atrás do API Gateway.",
+  "main": "dist/lambda.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc -p tsconfig.json && tsc-alias",
+    "start": "node dist/server.js",
+    "typecheck": "tsc --noEmit",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:migrate:deploy": "prisma migrate deploy",
+    "prisma:studio": "prisma studio",
+    "seed": "tsx prisma/seed.ts",
+    "deploy": "npm run build && npx serverless deploy",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^6.16.0",
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "helmet": "^8.3.0",
+    "jsonwebtoken": "^9.0.3",
+    "nodemailer": "^9.0.6",
+    "pdfkit": "^0.20.1",
+    "serverless-http": "^4.0.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.162",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^26.2.0",
+    "@types/nodemailer": "^8.0.1",
+    "@types/pdfkit": "^0.17.6",
+    "prisma": "^6.16.0",
+    "tsc-alias": "^1.9.2",
+    "tsx": "^4.23.12",
+    "typescript": "^5.7.3"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  }
+}
